@@ -1,0 +1,139 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: #0b1320;
+    font-family: 'Nunito', sans-serif;
+}
+
+#menu{
+    height: 90px;
+    padding: 0 200px;
+    background-color: #0b1320;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+#logo{    
+    font-size: 30px;
+    line-height: 110px;
+    color:white;
+    float: left;      
+}
+
+nav{
+    float: right;
+    line-height: 110px;
+}
+
+nav a:link{
+    text-decoration: none;
+    margin-right: 25px;
+}
+
+nav a:hover:not(.active){
+    border-bottom: 2px solid white;
+}
+
+nav a:not(.aktif) {
+    color: white;
+}
+
+.aktif {
+    color: skyblue;
+}
+
+.ikon{
+    margin-right: 7px;
+    font-size: 20px;
+}
+
+#icerik{
+    width:90%;
+    height: 30%;
+    margin: auto;
+    padding-top: 100px;
+    color: #fff;
+    z-index: 2;
+}
+
+#hareketli, #radyolar, #nostalji, #anadolu{
+    width:90%;
+    height: 30%;
+    margin: auto;
+    padding-top: 20px;
+    color: #fff;
+    z-index: 2;
+}
+ 
+#icerik h1{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+#icerik p{
+    font-size: 20px;
+    font-weight: 400;
+    color: #4c5262;
+    margin: auto;
+}
+
+#kutular, #radyokutuları, #nostaljikutuları, #anadolukutuları{
+    width: 90%;
+    height: 30%;
+    margin: auto;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+#kutu, #radyo, #nostaljii, #anadoluu{
+    margin: 0 15px;
+    transition: 0.3s;
+}
+
+#kutu:hover, #radyo:hover, #nostaljii:hover, #anadoluu:hover{
+    transform: scale(1.2);
+    z-index: 2;
+}
+
+.icon{
+    margin-right: 8px;
+    color: white;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;  
+}
+
+.slider_container, .volume_container, .radyoismi{
+    color: white;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.altbar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center; 
+    flex-wrap: wrap;
+    column-gap: 15px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.seek_slider, .volume_slider {
+  appearance: none;
+  height: 2px;
+  background: white;
+}
+
+.playlist{
+    display: none;
+}
