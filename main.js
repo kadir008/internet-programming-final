@@ -10,6 +10,7 @@ let radyoadi = document.querySelector(".radyoismi");
 
 let track_index = 0;
 let isPlaying = false;
+let ozelkontrol = false;
 let updateTimer;
 let curr_track = document.createElement('audio');
 let songListItems = songList.getElementsByTagName('li');
@@ -38,8 +39,14 @@ function playpauseTrack() {
 function playTrack() {
   curr_track.play();
   isPlaying = true;
-  playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-3x icon"></i>';      
-  radyoadi.innerHTML = songListItems[track_index].getAttribute('data-name');
+  playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-3x icon"></i>';
+  if (!ozelkontrol){
+        radyoadi.innerHTML = songListItems[track_index].getAttribute('data-name');
+  }
+    else{
+        var muzikci = document.getElementById('muzikismi');
+        radyoadi.innerHTML = muzikci.innerHTML; 
+    }
 }
 
 function pauseTrack() {
@@ -49,6 +56,7 @@ function pauseTrack() {
 }
 
 function nextTrack() {
+  ozelkontrol = false;
   if (track_index < songListItems.length - 1)
     track_index += 1;
   else track_index = 0;

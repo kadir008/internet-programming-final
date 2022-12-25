@@ -3,30 +3,42 @@
 }
 
 body{
-    margin: 0;
+    margin-bottom: 55px;
     background-color: #0b1320;
     font-family: 'Nunito', sans-serif;
 }
 
-#menu{
-    height: 90px;
-    padding: 0 200px;
-    background-color: #0b1320;
-    position: fixed;
-    width: 100%;
-    top: 0;
+#logo{
+    font-size: 52px;
+    line-height: 135px;
+    color:white;
+    float: left;
+    font-family: 'Baloo Tammudu 2', sans-serif;
 }
 
-#logo{    
-    font-size: 30px;
-    line-height: 110px;
-    color:white;
-    float: left;      
+#menu{
+    height: 90px;
+    padding: 0 150px;
+    position: fixed;
+    width: 100%;
+    background-color: #0b1320;
+    top: 0;
+    z-index: 2;
+    font-family: 'Baloo Tammudu 2', sans-serif;
+}
+
+nav h1{
+    float: right;
+    color: white;
+    line-height: 92px;
+}
+nav a{
+    color: white;
 }
 
 nav{
     float: right;
-    line-height: 110px;
+    line-height: 125px;
 }
 
 nav a:link{
@@ -38,26 +50,17 @@ nav a:hover:not(.active){
     border-bottom: 2px solid white;
 }
 
-nav a:not(.aktif) {
-    color: white;
-}
-
-.aktif {
-    color: skyblue;
-}
-
 .ikon{
-    margin-right: 7px;
-    font-size: 20px;
+    margin-right: 8px;
+    font-size: 23px;
+    color: white;
 }
 
 #icerik{
     width:90%;
     height: 30%;
     margin: auto;
-    padding-top: 100px;
     color: #fff;
-    z-index: 2;
 }
 
 #hareketli, #radyolar, #nostalji, #anadolu{
@@ -66,9 +69,7 @@ nav a:not(.aktif) {
     margin: auto;
     padding-top: 20px;
     color: #fff;
-    z-index: 2;
 }
- 
 #icerik h1{
     font-size: 30px;
     font-weight: 600;
@@ -82,22 +83,21 @@ nav a:not(.aktif) {
 }
 
 #kutular, #radyokutuları, #nostaljikutuları, #anadolukutuları{
-    width: 90%;
-    height: 30%;
+    width: 91%;
+    height: auto;
     margin: auto;
     padding-top: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction:row;
 }
 
 #kutu, #radyo, #nostaljii, #anadoluu{
-    margin: 0 15px;
+    margin: auto 15px;
     transition: 0.3s;
 }
 
 #kutu:hover, #radyo:hover, #nostaljii:hover, #anadoluu:hover{
     transform: scale(1.2);
-    z-index: 2;
 }
 
 .icon{
@@ -105,35 +105,478 @@ nav a:not(.aktif) {
     color: white;
 }
 
+.seek_slider, .volume_slider {
+  appearance: none;
+  height: 1px;
+  background: white;
+  cursor: pointer;
+}
+
+.calmalistesi{
+    display: none;
+}
+#tumu{
+    display: flex;
+    align-items: center; 
+    column-gap: 15px;
+    margin-top: 52px;
+    position: absolute;
+    right: 550px;
+}
 .buttons{
     display: flex;
-    align-items: center;  
+    align-items: center;
+    cursor: pointer;
 }
 
 .slider_container, .volume_container, .radyoismi{
     color: white;
     display: flex;
     align-items: center;
-    margin: 5px;
 }
 
-.altbar {
-    padding-top: 10px;
-    padding-bottom: 10px;
+#muzikcalar{
+    padding: 30px 50px;
+    height: 150px;
+}
+
+#iletisimopak{
+    background: rgba(255,255,255,0.2);
+    padding: 30px 50px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    height: 550px;
+}
+
+#formgroup{
+    width: 700px;
+    float: left;
+    height: 500px;
+    text-align: left;
+}
+
+#solform{
+    width: 50%;
+    float: left;
+    padding-right: 5px;
+}
+
+#sagform{
+    width: 50%;
+    float: right;
+    padding-left: 5px;
+}
+
+#iletisim{
+    width:70%;
+    height: 30%;
+    margin: auto;
+}
+
+.iletisimcontrol{
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #495057;
+    background-color: white;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+textarea{
+    font-family: sans-serif;   
+}
+
+input[type="submit"]{
+    cursor: pointer;
+    background-color: white;
+    font-size: 18px;
+    letter-spacing: 1px;
+    padding: 10px 30px;
+    color: black;
+    border: 3px solid white;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 15px;  
+}
+
+#adres{
+    float: center;
+    text-align: center;
+    margin: auto;
+}
+
+#adresbaslik{
+    font-size: 40px;
+    color: white;
+    text-align: center;
+}
+
+#sosyalmedya{
+    font-size: 35px;
+    color: white;
+    text-align: center;
+}
+
+.adresp{
+    color: #ddd;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+}
+
+.sosyalbutonlar{
+	margin: auto;
+	display: inline-block;
+	position: relative;
+}
+	
+.sosyalbutonlar a  {
+    background:#a1a1a1;
+	text-decoration: none;
+	color: #FFF;
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+	border-radius: 10px;
+	margin-right: 20px;
+	font-size: 30px;
+	overflow: hidden;
+	position: relative;
+	line-height: 60px;
+	text-align: center;
+  }
+    
+.sosyalbutonlar a{  
+   transition: transform 0.4s linear 0s, 
+	 border-top-left-radius 0.1s linear 0s, 
+	 border-top-right-radius 0.1s linear 0.1s, 
+	 border-bottom-right-radius 0.1s linear 0.2s, 
+	 border-bottom-left-radius 0.1s linear 0.3s;
+ 	
+}
+
+.sosyalbutonlar .facebook:hover {
+      background-color: #3b5998;
+      transform: rotate(360deg);
+      border-radius: 50%;	 
+}
+
+  .sosyalbutonlar .twitter:hover   {
+      background-color: #00aced;
+      transform: rotate(360deg);
+      border-radius: 50%;	 
+}
+  
+ .sosyalbutonlar .google-plus:hover   {
+      background-color: #dd4b39;
+      transform: rotate(360deg);
+      border-radius: 50%;	 
+}
+
+ .sosyalbutonlar .instagram:hover   {
+      background-color: #bc2a8d;
+      transform: rotate(360deg);
+      border-radius: 50%;	 
+}
+
+ .sosyalbutonlar .youtube:hover   {
+      background-color: #bb0000;
+      transform: rotate(360deg);
+      border-radius: 50%;	 
+}
+#hakkimizda{
+    margin-right: 5%;
+    text-align: center;
+    font-weight: 600;
+}
+
+h3{
+    font-size: 50px;
+    color: white;
+    text-shadow: 0px 1px 1px black;
+    font-weight: 600;
+}
+
+#container{
+    width: 1200px;
+    height: auto;
+    margin: auto;
+}
+#sol{
+    float: left;
+    border-right: 3px solid white;
+    font-size: 30px;
+    width: 400px;
+    color: white;
+}
+#h5sol{
+    line-height: 1.6;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 40px;
+}
+
+#sag{
+    float: right;
+    width: 755px;
+    color: #999999;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 200;
+}
+.img-fluid{
+    max-width: 100%;
+    height: auto;
+}
+.mt100{
+    margin-top: 50px;
+}
+#pson{
+    color: #999;
+    letter-spacing: 1px;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-top: 30px;
+    font-weight: 100;
+}
+#tumradyolar{
+    width:90%;
+    height: 100%;
+    margin: auto;
     display: flex;
-    align-items: center; 
-    flex-wrap: wrap;
+    padding: 10px;
     column-gap: 15px;
-    margin-left: 25%;
-    margin-right: 25%;
 }
 
-.seek_slider, .volume_slider {
-  appearance: none;
-  height: 2px;
-  background: white;
+#radyogorsel{
+    border-radius: 20px;
+    margin-bottom: 20px;
+    height: 240px;
+    width: 240px;
 }
 
-.playlist{
-    display: none;
+#populer{
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: 800px;
+    width: 20%;
+}
+
+.imgradyo{
+   border-radius: 20px;
+   width: 100%
+}
+
+#ayrintilar{
+    height: 240px;
+    width: 60%;
+    border-radius: 10px;
+    line-height:3px;
+    font-family: 'Baloo Tammudu 2', sans-serif;
+}
+
+#ayrintilar h1{
+    color: white;
+    font-size: 43px;
+    margin-top: 80px;
+}
+
+#ayrintilar p{
+    color: #999;
+    letter-spacing: 1px;
+    font-size: 15px;
+    line-height:20px;
+}
+
+#ayrintilar h2{
+    color: white;
+    letter-spacing: 4px;
+    font-size: 18px;
+    line-height:15px;
+}
+
+#populer h1{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+#tablolar{
+    border-radius: 20px;
+    height: 100%;
+    width: 66.7%;
+    position: absolute;
+    top: 420px;
+    left: 110px;
+}
+.tutucu{
+    height: 50px;
+    width: 1100px;
+    display: flex;
+    line-height: 1px;
+    margin-top: 3px;
+    column-gap: 15px;
+}
+
+.ikonlar{
+    color: white;
+    font-size: 27px;
+    margin-top: 6px;
+}
+
+.tutucu h1{
+    font-size: 35px;
+    color: white;
+    font-family: 'Baloo Tammudu 2', sans-serif;
+    margin-left: 30px;
+    line-height: 1px;
+    text-align: center;
+}
+
+.tutucu h3{
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+}
+.ikons{
+    position: absolute;
+    right: 100px;
+}
+
+#radyotablosu:hover{    
+    cursor: pointer;
+    background-color: #111d42;
+}
+.muzikz{
+    height: 50px;
+    width: 345px;
+    margin-top: 5px;
+    margin-left: 5px;
+    display: flex;
+    column-gap: 10px;
+}
+.muzikz h3{
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 19px;
+    line-height: 1px;
+}
+.muzikz h1{
+    font-size: 5px;
+    color: white;
+    font-family: 'Baloo Tammudu 2', sans-serif;
+    margin-left: 10px;
+    line-height: 2px;
+}
+.ikonmzk{
+    color: white;
+    font-size: 27px;
+    margin-top: 4px;
+}
+#muzikler td:hover{
+    cursor: pointer;
+    background-color: #111d42;
+}
+
+
+#girisyap {
+	width: 500px;
+	padding: 25px;
+	background: #fff;
+	border-radius: 20px;
+    position: absolute;
+    left: 650px;
+    top: 250px;
+}
+
+#girisyap h2 {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+#girisyap input {
+	display: block;
+	border: 2px solid #ccc;
+	width: 95%;
+	padding: 10px;
+	margin: 10px auto;
+	border-radius: 5px;
+}
+#girisyap label {
+	color: #888;
+	font-size: 18px;
+	padding: 10px;
+}
+
+#girisyap button {
+	float: right;
+	background: #555;
+	padding: 10px 15px;
+	color: #fff;
+	border-radius: 5px;
+	margin-right: 10px;
+	border: none;
+}
+
+#girisyap button:hover{
+	opacity: .7;
+}
+.error {
+   background: #F2DEDE;
+   color: #A94442;
+   padding: 10px;
+   width: 95%;
+   border-radius: 5px;
+   margin: 20px auto;
+}
+
+.success {
+   background: #D4EDDA;
+   color: #40754C;
+   padding: 10px;
+   width: 95%;
+   border-radius: 5px;
+   margin: 20px auto;
+}
+
+.ca {
+	font-size: 14px;
+	display: inline-block;
+	padding: 10px;
+	text-decoration: none;
+	color: #444;
+}
+.ca:hover {
+	text-decoration: underline;
+} 
+
+.modal, .modal2 {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+}
+
+.close, .close2 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus,
+.close2:hover,
+.close2:focus{
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
