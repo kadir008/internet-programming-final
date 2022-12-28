@@ -36,7 +36,7 @@ require_once './menu.php';
                </table>      
             </div>
             <div id="tablolar">
-               <table>
+               <table id="radyotablosu">
                       <?php
                         $sira = 1;
                         $radyomuz = $conn->query("SELECT * FROM radyolar")->fetchAll();

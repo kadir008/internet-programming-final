@@ -1,30 +1,31 @@
- <?php session_start(); ?>
     <section id="menu">
        <div id="logo">43Station</div>  
        <nav>           
             <?php if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) { ?>
                           <?php if ($_SESSION['id'] == 5 && $_SESSION['user_name'] == 'admin') { ?>
-                               <a href="./index.php"><i class="fa-solid fa-house ikon"></i>Anasayfa</a>
-                               <a href="#"><i class="fa-solid fa-circle-plus ikon"></i>Müzik Ekle</a>
-                               <a href="#"><i class="fa-solid fa-podcast ikon"></i>Radyo Ekle</a>
-                               <a href="#"><i class="fa-solid fa-inbox ikon"></i>Mailler</a>
-                               <a href="./logout.php"><i class="fa-solid fa-right-from-bracket ikon"></i>Çıkış Yap</a>
+                               <a href="index.php"><i class="fa-solid fa-house ikon"></i>Anasayfa</a>
+                               <a href="muziktablo.php"><i class="fa-solid fa-circle-plus ikon"></i>Müzik Ekle</a>
+                               <a href="radyotablosu.php"><i class="fa-solid fa-podcast ikon"></i>Radyo Ekle</a>
+                               <a href="mailler.php"><i class="fa-solid fa-inbox ikon"></i>Mailler</a>
+                               <a href="tummuzikler.php"><i class="fa-solid fa-music ikon"></i>Müzikler</a>
+                               <a href="radyolar.php"><i class="fa-solid fa-radio ikon"></i>Radyolar</a>
+                               <a href="logout.php"><i class="fa-solid fa-right-from-bracket ikon"></i>Çıkış Yap</a>
                                <h1><i class="fa-solid fa-face-smile ikon"></i>Merhaba <?php echo $_SESSION['name']; ?></h1>
                            <?php }else{ ?>
-                                    <a href="./index.php"><i class="fa-solid fa-house ikon"></i>Anasayfa</a>
-                                    <a href="./tummuzikler.php"><i class="fa-solid fa-music ikon"></i>Müzikler</a>
-                                    <a href="./radyolar.php"><i class="fa-solid fa-radio ikon"></i>Radyolar</a>
-                                    <a href="./hakkimizda.php"><i class="fa-solid fa-circle-info ikon"></i>Hakkımızda</a>
-                                    <a href="./iletisim.php"><i class="fa-solid fa-envelope ikon"></i>İletişim</a>
-                                    <a href="./logout.php"><i class="fa-solid fa-right-from-bracket ikon"></i>Çıkış Yap</a>
+                                    <a href="index.php"><i class="fa-solid fa-house ikon"></i>Anasayfa</a>
+                                    <a href="tummuzikler.php"><i class="fa-solid fa-music ikon"></i>Müzikler</a>
+                                    <a href="radyolar.php"><i class="fa-solid fa-radio ikon"></i>Radyolar</a>
+                                    <a href="hakkimizda.php"><i class="fa-solid fa-circle-info ikon"></i>Hakkımızda</a>
+                                    <a href="iletisim.php"><i class="fa-solid fa-envelope ikon"></i>İletişim</a>
+                                    <a href="logout.php"><i class="fa-solid fa-right-from-bracket ikon"></i>Çıkış Yap</a>
                                     <h1><i class="fa-solid fa-face-smile ikon"></i>Merhaba <?php echo $_SESSION['name']; ?></h1>
                             <?php } ?>
             <?php }else{ ?>
-                    <a href="./index.php"><i class="fa-solid fa-house ikon"></i>Anasayfa</a>
-                    <a href="./tummuzikler.php"><i class="fa-solid fa-music ikon"></i>Müzikler</a>
-                    <a href="./radyolar.php"><i class="fa-solid fa-radio ikon"></i>Radyolar</a>
-                    <a href="./hakkimizda.php"><i class="fa-solid fa-circle-info ikon"></i>Hakkımızda</a>
-                    <a href="./iletisim.php"><i class="fa-solid fa-envelope ikon"></i>İletişim</a>
+                    <a href="index.php"><i class="fa-solid fa-house ikon"></i>Anasayfa</a>
+                    <a href="tummuzikler.php"><i class="fa-solid fa-music ikon"></i>Müzikler</a>
+                    <a href="radyolar.php"><i class="fa-solid fa-radio ikon"></i>Radyolar</a>
+                    <a href="hakkimizda.php"><i class="fa-solid fa-circle-info ikon"></i>Hakkımızda</a>
+                    <a href="iletisim.php"><i class="fa-solid fa-envelope ikon"></i>İletişim</a>
                     <a href="#" id="myBtn"><i class="fa-solid fa-user ikon"></i>Giriş Yap</a>
             <?php } ?>
             
