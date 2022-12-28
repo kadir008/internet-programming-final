@@ -6,21 +6,58 @@ require_once 'home.php';
     if ($_SESSION['id'] == 5 && $_SESSION['user_name'] == 'admin') { 
     require_once 'menu.php'; ?>
 
-<?php 
-       if(isset($_GET['id']))
-       {
+<?php
+        
+        if(isset($_GET['id']))
+        {
             $id = $_GET["id"];
             $sorgu = $conn->prepare("SELECT * FROM muzikler WHERE id =:id");
             $sorgu -> execute(array(":id" => $id));
             $row = $sorgu -> fetch(PDO::FETCH_ASSOC); 
-       }
+        }
+        if(isset($_POST['adi'], $_POST['sanatci'], $_POST['kategori'], $_POST['url'], $_GET['id'])){   
+            
+            $id = $_GET["id"];
+            $adi = $_POST['adi'];
+            $sanatci = $_POST['sanatci'];
+            $kategori = $_POST['kategori'];
+            $link = $_POST['url'];
+            
+            $sorgu = $conn->prepare("SELECT * FROM muzikler WHERE id =:id");
+            $sorgu -> execute(array(":id" => $id));
+            $row = $sorgu -> fetch(PDO::FETCH_ASSOC); 
+            
+            if ($row > 0) {
+                $conn->prepare("UPDATE muzikler SET adi = ?, sanatci = ?, url = ?, kategori = ? WHERE id = '$id'")->execute([$adi, $sanatci, $link, $kategori]);
+                echo "<script>alert('Müzik başarıyla düzenlendi.'); window.location.href='muziktablo.php';</script>";
+
+            }
+        }    
+        else if(isset($_POST['adi'], $_POST['sanatci'], $_POST['kategori'], $_POST['url']) && empty($_GET['id'])) {    
+            $adi = $_POST['adi'];
+            $sanatci = $_POST['sanatci'];
+            $kategori = $_POST['kategori'];
+            $link = $_POST['url'];
+            
+                  $sth = $conn->prepare("SELECT * FROM muzikler WHERE url='$link'");
+		          $sth->execute();
+		          $result = $sth->fetch(PDO::FETCH_ASSOC);
+		          if ($result > 0) {
+			             echo "<script>alert('Zaten böyle bir şarkı mevcut.');</script>";
+		          }
+                  else {
+			             $conn->prepare("INSERT INTO muzikler (adi, sanatci, url, kategori) VALUES (?, ?, ?, ?)")->execute([$adi, $sanatci, $link, $kategori]);
+                         echo "<script>alert('Müziğiniz başarıyla eklenmiştir.');</script>";
+                         
+            }  
+        }
         
 ?>
 
 <section id="Ekleme">
-           <h1>Müzik Ekle</h1>
+           <h1>Müzik Ekle / Düzenle</h1>
             <div id="kelemeyap">
-             <form action="" method="POST">
+            <form action="" method="POST">
               <div id="eklemegroup">
                 <div id="ekleform">
                     <input type="text" name="adi" value='<?php if(isset($_GET['id'])) echo $row['adi']; ?>' placeholder="Müzik Adı" required class="iletisimcontrol">
@@ -53,18 +90,6 @@ require_once 'home.php';
             </div>     
 </section>
 
-<?php
-        if(isset($_POST['adi'], $_POST['sanatci'], $_POST['kategori'], $_POST['url'])) {
-            
-            $adi = $_POST['adi'];
-            $sanatci = $_POST['sanatci'];
-            $kategori = $_POST['kategori'];
-            $link = $_POST['url'];
-            
-            $conn->prepare("INSERT INTO muzikler (adi, sanatci, url, kategori) VALUES (?, ?, ?, ?)")->execute([$adi, $sanatci, $link, $kategori]);
-            echo "<script>alert('Müziğiniz başarıyla eklenmiştir.');</script>";
-        }
-?>
 
 <div class="table-wrapper">
     <table class="fl-table">
@@ -72,7 +97,7 @@ require_once 'home.php';
         <h1>Müzik Kategorileri</h1>
         <p>Listelemek istediğiniz kategoriyi seçiniz ve listele butonuna basınız. Düzenle butonuna bastığınızda bilgiler yukarıdaki alana otomatik olarak gönderilecektir.<br>Sil butonu ile müziğinizi silebilirsiniz.</p>
         
-        <form action='' method='POST'>
+        <form action="" method="POST">
             <select id="secilen" name="MusicId">
                <option value="1">Türkçe Pop</option>
                <option value="2">Yabancı Pop</option>
@@ -139,7 +164,7 @@ require_once 'home.php';
                   echo "<td>". $muzik['sanatci'] ."</td>";
                   echo "<td>" .$kategori. "</td>";
                   echo "<td>". $muzik['url'] ."</td>";
-                  echo '<td><a href="./muziktablo.php?id='. $muzik['id']. '"><i class="fa-solid fa-pen-to-square ikonum"></i></a>  <a href="./sil.php"><i class="fa-solid fa-trash ikonum"></i></i></a></td>';
+                  echo '<td><a href="./muziktablo.php?id='. $muzik['id']. '"><i class="fa-solid fa-pen-to-square ikonum"></i></a>  <a href="./muziksil.php?id='. $muzik['id']. '"><i class="fa-solid fa-trash ikonum"></i></i></a></td>';
                   echo "</tr>";
                }
             }
@@ -174,7 +199,7 @@ require_once 'home.php';
                   echo "<td>". $muzik['sanatci'] ."</td>";
                   echo "<td>" .$kategori. "</td>";
                   echo "<td>". $muzik['url'] ."</td>";
-                  echo '<td><a href="./muziktablo.php?id='. $muzik['id']. '"><i class="fa-solid fa-pen-to-square ikonum"></i></a>  <a href="./sil.php"><i class="fa-solid fa-trash ikonum"></i></i></a></td>';
+                  echo '<td><a href="./muziktablo.php?id='. $muzik['id']. '"><i class="fa-solid fa-pen-to-square ikonum"></i></a>  <a href="./muziksil.php?id='. $muzik['id']. '"><i class="fa-solid fa-trash ikonum"></i></i></a></td>';
                   echo "</tr>";
                }
             }

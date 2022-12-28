@@ -47,7 +47,6 @@ require_once './menu.php';
                             echo "<h1>". $sira.".". "</h1>";
                             echo "<i class='fa-regular fa-circle-play ikonlar'></i>";
                             echo "<h3>". $radyo['adi']. "</h3>";
-                            echo "<div class='ikons'><i class='fa-regular fa-heart ikonlar'></i></div>";
                             echo "</div>";
                             echo "</td>";
                             echo "</tr>";

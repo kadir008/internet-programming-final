@@ -6,29 +6,62 @@ require_once './home.php';
     if ($_SESSION['id'] == 5 && $_SESSION['user_name'] == 'admin') { 
     require_once './menu.php'; ?>
 
+<?php
+        
+        if(isset($_GET['id']))
+        {
+            $id = $_GET["id"];
+            $sorgu = $conn->prepare("SELECT * FROM radyolar WHERE id =:id");
+            $sorgu -> execute(array(":id" => $id));
+            $row = $sorgu -> fetch(PDO::FETCH_ASSOC); 
+        }
+        if(isset($_POST['adi'], $_POST['url'], $_GET['id'])){   
+            
+            $id = $_GET["id"];
+            $adi = $_POST['adi'];
+            $url = $_POST['url'];
+            
+            $sorgu = $conn->prepare("SELECT * FROM radyolar WHERE id =:id");
+            $sorgu -> execute(array(":id" => $id));
+            $row = $sorgu -> fetch(PDO::FETCH_ASSOC); 
+            
+            if ($row > 0) {
+                $conn->prepare("UPDATE radyolar SET adi = ?, url = ? WHERE id = '$id'")->execute([$adi, $url]);
+                echo "<script>alert('Radyo başarıyla düzenlendi.'); window.location.href='radyotablosu.php';</script>";
+            }
+        }    
+        else if(isset($_POST['adi'], $_POST['url']) && empty($_GET['id'])) {    
+            $adi = $_POST['adi'];
+            $url = $_POST['url'];
+            
+                  $sth = $conn->prepare("SELECT * FROM radyolar WHERE url='$url'");
+		          $sth->execute();
+		          $result = $sth->fetch(PDO::FETCH_ASSOC);
+		          if ($result > 0) {
+			             echo "<script>alert('Zaten böyle bir radyo mevcut.');</script>";
+		          }
+                  else {
+			            $conn->prepare("INSERT INTO radyolar (adi, url) VALUES (?, ?)")->execute([$adi, $url]);
+                        echo "<script>alert('Radyonuz başarıyla eklenmiştir.');</script>";              
+            }  
+        }      
+?>
+
 <section id="Ekleme">
-           <h1>Radyo Ekle</h1>
+           <h1>Radyo Ekle / Düzenle</h1>
             <div id="eklemeyap">
              <form action="" method="POST">
               <div id="eklemegroup">
                 <div id="ekleform">
-                    <input type="text" name="adi" placeholder="Radyo Adı" required class="iletisimcontrol">
-                    <input type="text" name="url" placeholder="Radyo Url" required class="iletisimcontrol">
+                    <input type="text" name="adi" value='<?php if(isset($_GET['id'])) echo $row['adi']; ?>' placeholder="Radyo Adı" required class="iletisimcontrol">
+                    <input type="text" name="url" value='<?php if(isset($_GET['id'])) echo $row['url']; ?>' placeholder="Radyo Url" required class="iletisimcontrol">
                 </div>
                     <input type="submit" value="Ekle">   
               </div>
               </form>
             </div>        
 </section>
-<?php
-        if(isset($_POST['adi'], $_POST['url'])) {
-            
-            $adi = $_POST['adi'];
-            $url = $_POST['url'];
-            $conn->prepare("INSERT INTO radyolar (adi, url) VALUES (?, ?)")->execute([$adi, $url]);
-            echo "<script>alert('Radyonuz başarıyla eklenmiştir.');</script>";
-        }
-?>
+
 <div class="table-wrapper">
     <table class="fl-table">
         <thead>
@@ -49,7 +82,7 @@ require_once './home.php';
                   echo "<td>". $radyo['id'] ."</td>";
                   echo "<td>". $radyo['adi'] ."</td>";
                   echo "<td>". $radyo['url'] ."</td>";
-                  echo '<td><a href="./duzenle.php"><i class="fa-solid fa-pen-to-square ikonum"></i></a>  <a href="./sil.php"><i class="fa-solid fa-trash ikonum"></i></i></a></td>';
+                  echo '<td><a href="./radyotablosu.php?id='. $radyo['id']. '"><i class="fa-solid fa-pen-to-square ikonum"></i></a>  <a href="./radyosil.php?id='. $radyo['id']. '"><i class="fa-solid fa-trash ikonum"></i></i></a></td>';
                   echo "</tr>";
                     }
             ?> 
