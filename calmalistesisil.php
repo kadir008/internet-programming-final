@@ -7,9 +7,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         if(isset($_GET['id']))
         {
             $id = $_GET["id"];
-            $sorgu = $conn->prepare("DELETE FROM muzikler WHERE id =:id");
+            $sorgu = $conn->prepare("DELETE FROM bolum WHERE id =:id");
             $sorgu -> execute(array(":id" => $id));
-            echo "<script>alert('Kayıt başarıyla silindi.'); window.location.href='muziktablo.php';</script>";
+            echo "<script>alert('Kayıt başarıyla silindi.'); window.location.href='ev.php';</script>";
         }
     }
     else { 

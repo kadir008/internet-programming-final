@@ -1,34 +1,43 @@
-<h1 id="muzikismi" style="display:none;"></h1>
-<script src="main.js"></script> 
+<div class="calmalistesi">
+    <ul class="song-list">
+        <?php
+            $radyomuz = $conn->query("SELECT * FROM radyolar")->fetchAll();
+            foreach ($radyomuz as $radyo) {
+              echo "<li data-src='". $radyo['url']. "' data-name='". $radyo['adi']. "'". '></li>';
+        }
+        ?>
+    </ul>
+</div>
 
-<script>  
-    
-    function listem(gelenveri){
-        songListItems.clear; 
-        curr_track.src = gelenveri.getAttribute('data-src');
-        playTrack();
-        var muzikci = document.getElementById('muzikismi');
-        muzikci.innerHTML = gelenveri.getAttribute('data-name');
-        radyoadi.innerHTML = gelenveri.getAttribute('data-name');
-        ozelkontrol = true;
-        return false;
-    }
-    
-    window.onload = function(){
-            playTrack();
-    }
-        
-</script>
-   
+<h1 id="muzikismi" style="display:none;"></h1>
+
+<script src="main.js"></script>
 
 <script>
-    var modal = document.getElementById("myModal");
+function listem(gelenveri){
+    songListItems.clear; 
+    curr_track.src = gelenveri.getAttribute('data-src');
+    playTrack();
+    var muzikci = document.getElementById('muzikismi');
+    muzikci.innerHTML = gelenveri.getAttribute('data-name');
+    radyoadi.innerHTML = gelenveri.getAttribute('data-name');
+    ozelkontrol = true;
+    return false;
+}
+window.onload = function(){
+    playTrack();
+}
+</script>
+
+<script>
+    var modal = parent.alt.myModal;
+    var modals = parent.alt.myModal2;
     var btn = document.getElementById("myBtn");
-    var span = document.getElementsByClassName("close")[0];
-    var spans = document.getElementsByClassName("close2")[0];
-    var modals = document.getElementById("myModal2");
-    var btns = document.getElementById("myBtn2");
-    var btnss = document.getElementById("myBtn3");
+    var span = parent.alt.close;
+    var spans = parent.alt.close2;
+    var btns = parent.alt.myBtn2;
+    var btnss = parent.alt.myBtn3;
+
         btn.onclick = function() {
             modal.style.display = "block";
         }
@@ -38,7 +47,7 @@
         spans.onclick = function () {
             modals.style.display = "none";
         }
-        window.onclick = function(event) {
+        parent.alt.window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
         }

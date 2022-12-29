@@ -1,7 +1,5 @@
 <?php
-require_once './connection.php';
-require_once './home.php';
-require_once './menu.php';
+require_once './ana.php';
 ?>
 
 <section id="hakkimizda">
@@ -19,5 +17,5 @@ require_once './menu.php';
 </section>
 
 <?php
-require_once './footer.php';
+require_once './son.php';
 ?>

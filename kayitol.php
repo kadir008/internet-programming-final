@@ -1,6 +1,5 @@
 <?php 
-session_start(); 
-require_once './connection.php';
+require_once './ana.php';
 
 if (isset($_POST['uname']) && isset($_POST['password'])
     && isset($_POST['name']) && isset($_POST['re_password'])) {
@@ -21,24 +20,24 @@ if (isset($_POST['uname']) && isset($_POST['password'])
 
 
 	if (empty($uname)) {
-		header("Location: index.php?error=Kullanıcı adı gerekli&$user_data");
+		header("Location: ev.php?error=Kullanıcı adı gerekli&$user_data");
 	    exit();
 	}else if(empty($pass)){
-        header("Location: index.php?error=Şifre alanı boş bırakılamaz&$user_data");
+        header("Location: ev.php?error=Şifre alanı boş bırakılamaz&$user_data");
 	    exit();
 	}
 	else if(empty($re_pass)){
-        header("Location: index.php?error=Şifre alanı boş bırakılamaz&$user_data");
+        header("Location: ev.php?error=Şifre alanı boş bırakılamaz&$user_data");
 	    exit();
 	}
 
 	else if(empty($name)){
-        header("Location: index.php?error=Ad alanı boş bırakılamaz&$user_data");
+        header("Location: ev.php?error=Ad alanı boş bırakılamaz&$user_data");
 	    exit();
 	}
 
 	else if($pass !== $re_pass){
-        header("Location: index.php?error=Şifreler eşleşmiyor&$user_data");
+        header("Location: ev.php?error=Şifreler eşleşmiyor&$user_data");
 	    exit();
 	}
 
@@ -50,7 +49,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])
 		$result = $sth->fetch(PDO::FETCH_ASSOC);
 
 		if ($result > 0) {
-			header("Location: index.php?error=Kullanıcı adı kullanımda.&$user_data");
+			header("Location: ev.php?error=Kullanıcı adı kullanımda.&$user_data");
 	        exit();
 		}else {
 			$insert_query = "INSERT INTO users(user_name, password, name) VALUES (?, ?, ?)";
@@ -60,12 +59,12 @@ if (isset($_POST['uname']) && isset($_POST['password'])
 				$pass,
 				$name
 			));
-           	header("Location: index.php?success=Başarıyla kayıt oldun.");
+           	header("Location: ev.php?success=Başarıyla kayıt oldun.");
 			exit();
 		}
 	}
 	
 }else{
-	header("Location: index.php");
+	header("Location: ev.php");
 	exit();
 }

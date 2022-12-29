@@ -1,7 +1,5 @@
 <?php
-require_once './connection.php';
-require_once './home.php';
-require_once './menu.php';
+require_once './ana.php';
 ?>
 
 <section id="iletisim">
@@ -42,11 +40,11 @@ require_once './menu.php';
             $mesaj = $_POST['mesaj'];
   
             $conn->prepare("INSERT INTO iletisim (adi, mail, konu, istek, mesaj) VALUES (?,?,?,?,?)")->execute([$adi, $email, $konu, $istek, $mesaj]);
-            echo "<script>alert('Mesaj gönderdiğiniz için teşekkür ederiz. Mesajınız ilgili birimlere iletilmiştir.');</script>";
+            echo "<script>alert('Mesaj gönderdiğiniz için teşekkür ederiz. Mesajınız ilgili birimlere iletilmiştir.'); window.location.href='ev.php';</script>";
         } 
 ?>
     
     
 <?php
-require_once './footer.php';
+require_once './son.php';
 ?>

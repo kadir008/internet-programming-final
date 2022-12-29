@@ -1,5 +1,5 @@
 <?php
-require_once 'home.php';
+  require_once './ana.php';
 
 if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) { 
     if ($_SESSION['id'] == 5 && $_SESSION['user_name'] == 'admin') { 
@@ -13,14 +13,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         }
     }
     else { 
-        header("Location: index.php");
+        header("Location: ev.php");
 	   exit(); 
     } 
 }
 else { 
-       header("Location: index.php");
+       header("Location: ev.php");
 	   exit(); 
     }
 
-require_once 'footer.php';
+require_once './son.php';
 ?>

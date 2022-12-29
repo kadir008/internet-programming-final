@@ -1,6 +1,5 @@
 <?php 
-session_start(); 
-require_once './connection.php';
+require_once './ana.php';
 
 if (isset($_POST['uname']) && isset($_POST['password'])) {
 
@@ -15,10 +14,10 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 	$pass = validate($_POST['password']);
 
 	if (empty($uname)) {
-		header("Location: index.php?error=Kullanıcı adı gereklidir");
+		header("Location: ev.php?error=Kullanıcı adı gereklidir");
 	    exit();
 	}else if(empty($pass)){
-        header("Location: index.php?error=Şifre gereklidir");
+        header("Location: ev.php?error=Şifre gereklidir");
 	    exit();
 	}else{
         $pass = md5($pass); 
@@ -31,19 +30,19 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             	$_SESSION['user_name'] = $row['user_name'];
             	$_SESSION['name'] = $row['name'];
             	$_SESSION['id'] = $row['id'];
-            	header("Location: index.php");
+                echo "<script>parent.location.reload();</script>";
 		        exit();
             }else{
-				header("Location: index.php?error=Kullanıcı adı ya da şifre yanlış!");
+				header("Location: ev.php?error=Kullanıcı adı ya da şifre yanlış!");
 		        exit();
 			}
 		}else{
-			header("Location: index.php?error=Kullanıcı adı ya da şifre yanlış!");
+			header("Location: ev.php?error=Kullanıcı adı ya da şifre yanlış!");
 	        exit();
 		}
 	}
 	
 }else{
-	header("Location: index.php");
+	header("Location: ev.php");
 	exit();
 }

@@ -1,10 +1,10 @@
 <?php
-require_once './home.php';
+  require_once './ana.php';
 ?>
 
 <?php if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) { 
     if ($_SESSION['id'] == 5 && $_SESSION['user_name'] == 'admin') { 
-    require_once './menu.php'; ?>
+?>
 
 <?php
         
@@ -91,11 +91,11 @@ require_once './home.php';
 </div>
 
 <?php 
-require_once './footer.php';
+require_once './son.php';
  } 
 } 
 else { 
-    header("Location: index.php");
+    header("Location: ev.php");
 	exit(); } 
 ?>
 
