@@ -108,7 +108,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
            <?php
             if(isset($_POST['submit'])){
               $i = $_POST['MusicId'];
-              $muzikler = $conn->prepare("SELECT * FROM muzikler INNER JOIN kategoriler ON muzikler.kategori = kategoriler.id WHERE kategori = '$i'");
+              $muzikler = $conn->prepare("SELECT muzikler.id,muzikler.adi,muzikler.sanatci,kategoriler.isim,muzikler.url FROM muzikler INNER JOIN kategoriler ON muzikler.kategori = kategoriler.id WHERE kategori = '$i'");
               $muzikler->execute();
               foreach ($muzikler as $muzik)
               {
@@ -124,7 +124,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             }
             else
             {
-              $muziks = $conn->query("SELECT * FROM muzikler INNER JOIN kategoriler ON muzikler.kategori = kategoriler.id")->fetchAll();
+              $muziks = $conn->query("SELECT muzikler.id,muzikler.adi,muzikler.sanatci,kategoriler.isim,muzikler.url FROM muzikler INNER JOIN kategoriler ON muzikler.kategori = kategoriler.id")->fetchAll();
               foreach ($muziks as $muzik)
               {
                   echo "<tr>";

@@ -565,17 +565,17 @@ h3{
   overflow: auto; 
 }
 
-#close, #close2 {
+.close, .close2 {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-#close:hover,
-#close:focus,
-#close2:hover,
-#close2:focus{
+.close:hover,
+.close:focus,
+.close2:hover,
+.close2:focus{
   color: #000;
   text-decoration: none;
   cursor: pointer;

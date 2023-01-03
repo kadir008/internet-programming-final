@@ -31,7 +31,7 @@
                     <a href="radyolar.php" target="alt"><i class="fa-solid fa-radio ikon"></i>Radyolar</a>
                     <a href="hakkimizda.php" target="alt"><i class="fa-solid fa-circle-info ikon"></i>Hakkımızda</a>
                     <a href="iletisim.php" target="alt"><i class="fa-solid fa-envelope ikon"></i>İletişim</a>
-                    <a href="#" id="myBtn"><i class="fa-solid fa-user ikon"></i>Giriş Yap</a>
+                    <a href="javascript:;" onclick="parent.alt.myFunctio()"><i class="fa-solid fa-user ikon"></i>Giriş Yap</a>
             <?php } ?>
             
        </nav>

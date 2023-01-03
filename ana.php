@@ -18,7 +18,7 @@
 
 <div id="myModal" class="modal"> 
     <form id="girisyap" action="girisyap.php" method="post">
-                 <span id="close">&times;</span>
+                 <span class="close">&times;</span>
      	            <h2>Giriş Yap</h2>
      	        <?php if (isset($_GET['error'])) { ?>
      		     <p class="error"><?php echo $_GET['error']; ?></p>
@@ -36,7 +36,7 @@
  
 <div id="myModal2" class="modal2"> 
    <form id="girisyap" action="kayitol.php" method="post">
-        <span id="close2">&times;</span>
+        <span class="close2">&times;</span>
      	<h2>Kayıt Ol</h2>
      	<?php if (isset($_GET['error'])) { ?>
      		<p class="error"><?php echo $_GET['error']; ?></p>
@@ -85,4 +85,5 @@
           <a href="#" id="myBtn3" class="ca">Zaten bir hesabınız var mı?</a>
 </form>
 </div>
+
 

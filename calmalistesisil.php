@@ -9,7 +9,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             $id = $_GET["id"];
             $sorgu = $conn->prepare("DELETE FROM bolum WHERE id =:id");
             $sorgu -> execute(array(":id" => $id));
-            echo "<script>alert('Kayıt başarıyla silindi.'); window.location.href='ev.php';</script>";
+            
+            $sorgu2 = $conn->prepare("DELETE FROM kategoriler WHERE id =:id");
+            $sorgu2 -> execute(array(":id" => $id));
+            
+            echo "<script>alert('Kayıt başarıyla silindi.');</script>";
         }
     }
     else { 

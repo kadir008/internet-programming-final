@@ -23,7 +23,7 @@ require_once './ana.php';
                             echo "<div class='muzikz'>";      
                             echo "<h1>". $sira.".". "</h1>";                  
                             echo "<i class='fa-regular fa-circle-play ikonmzk'></i>";       
-                            echo "<h3>". $muzik['sanatci']. " - " .$muzik['adi']. "</h3>";             
+                            echo "<h3>". $muzik['adi']. "</h3>";             
                             echo "</div>";
                             echo "</td>";
                             echo "</tr>";

@@ -25,7 +25,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             
             if ($row > 0) {
                 $conn->prepare("UPDATE bolum SET baslik = ?, aciklama = ?, gorselurl = ?, bolumid = ? WHERE id = '$id'")->execute([$baslik, $aciklama, $gorselurl, $kategori]);
-                echo "<script>alert('Çalma listeniz başarıyla düzenlendi.'); window.location.href='muziktablo.php';</script>";
+                
+                $conn->prepare("UPDATE kategoriler SET isim = ? WHERE id = '$id'")->execute([$baslik]);
+                
+                echo "<script>alert('Çalma listeniz başarıyla düzenlendi.');</script>";
 
             }
         }    
@@ -36,6 +39,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             $kategori = $_POST['kategori'];
             
 			$conn->prepare("INSERT INTO bolum (baslik, aciklama, gorselurl, bolumid) VALUES (?, ?, ?, ?)")->execute([$baslik, $aciklama, $gorselurl, $kategori]);
+            
+            $conn->prepare("INSERT INTO kategoriler (isim) VALUES (?)")->execute([$baslik]);
+            
             echo "<script>alert('Çalma listeniz başarıyla eklenmiştir.');</script>";        
         }
             
