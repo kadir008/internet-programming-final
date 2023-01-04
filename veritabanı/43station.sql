@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 03 Oca 2023, 22:07:04
+-- Üretim Zamanı: 04 Oca 2023, 13:36:34
 -- Sunucu sürümü: 5.7.36
 -- PHP Sürümü: 7.4.26
 
@@ -24,6 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `anasayfakategori`
+--
+
+DROP TABLE IF EXISTS `anasayfakategori`;
+CREATE TABLE IF NOT EXISTS `anasayfakategori` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kategoribaslik` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `anasayfakategori`
+--
+
+INSERT INTO `anasayfakategori` (`id`, `kategoribaslik`) VALUES
+(1, 'EĞLENCENE HAREKET KAT'),
+(2, 'BİRAZ NOSTALJİ'),
+(3, '%100 ANADOLU ROCK'),
+(4, 'DUYGU DURUMUNA GÖRE MÜZİKLER');
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `bolum`
 --
 
@@ -33,63 +56,39 @@ CREATE TABLE IF NOT EXISTS `bolum` (
   `baslik` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `aciklama` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gorselurl` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bolumid` int(11) NOT NULL,
+  `idkategori` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `bolum`
 --
 
-INSERT INTO `bolum` (`id`, `baslik`, `aciklama`, `gorselurl`, `bolumid`) VALUES
-(1, 'Türkçe Pop | Hareketli Şarkılar', 'Dinlerken yerinde duramayacağın en hareketli şarkıları senin için derledik. İşte Ece Mumay, Edis ve Tarkan gibi şarkıcıların hareketli şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/eukpdhz.jpg', 0),
-(2, 'Yabancı Pop | Hareketli Şarkılar', 'Yerinde duramayanlar için yabancı popun en hareketli şarkılarını derledik. İşte Justın Tımberlake, Lady Gaga ve Shakira\'nın bomba gibi şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/bz60dkf.jpg', 0),
-(3, 'Türkçe Rock | Hareketli Şarkılar', 'Hareketli Türkçe rock şarkıları bu çalma listesinde bulabilirsin. İşte Pamela ve Gökçe gibi şarkıcıların hareketli rock şarkılarını dinleyebileceğin çalma listesi...', 'https://i.hizliresim.com/trxtk77.jpg', 0),
-(4, 'Yaz Şarkıları | Hareketli Şarkılar', 'Yaz aylarının vazgeçilmez şarkılarını senin için derledik. İşte Türkçe Pop\'un rengarenk, yaz sıcaklığındaki şarkılarını dinleyebileceğin çalma listesi...', 'https://i.hizliresim.com/9c5qbux.jpg', 0),
-(5, 'Karadeniz | Hareketli Şarkılar', 'En güzel Karadeniz şarkıları dinlemek için doğru yerdesiniz. 7/24 dinle ile Karadeniz türküleri ve şarkıları en sevilen Karadeniz sanatçıları ile sizlerle.', 'https://i.hizliresim.com/sa7vels.jpg', 0),
-(6, 'Hareketli Türk Sanat Müziği', 'Hareketli Türk Sanat Müziği şarkılarını bu çalma listesinde bulabilirsin. İşte Safiye Ayla, Emel Sayın ve Zeki Müren gibi müzisyenlerin şarkılarını dinleyebileceğin çalma listesi...', 'https://i.hizliresim.com/8rfmivx.jpg', 0),
-(7, 'Pop Nostalji', '70\'ler ve 80\'lerden özenle seçtiğimiz efsaneleşmiş pop şarkıları senin için derledik. İşte Nesrin Sipahi, Nilüfer ve Semiramis Pekkan gibi unutulmaz şarkıcıların şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/setm336.jpg', 1),
-(8, 'Anadolu Rock Nostalji', 'Cem Karaca\'dan Barış Manço\'ya kadar birçok Anadolu Rock efsanelerinin şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/pyl7i9f.jpg', 1),
-(9, 'Eski Şarkılar', 'Zamanın ötesinde bir güzelliğe sahip olan efsaneleşmiş şarkıları bu çalma listesinde bulabilirsin. İşte Uğur Akdora, Cici Kızlar ve Esmeray\'ın şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/lorwp0p.jpg', 1),
-(10, '45\'lik Nostalji', 'Her dönem sıkılmadan dinlediğimiz ölümsüz eserlerin yer aldığı şarkıları bu çalma listesinde bulabilirsin. İşte Füsun Önal, Gönül Akkor ve Semiramis Pekkan\'ın şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/qp1a8gu.jpg', 1),
-(11, 'Efsane Şarkılar', 'Yıllar geçse de eskimeyen muhteşem eserleri senin için derledik. İşte geçmişten günümüze ulaşan efsane şarkılar...', 'https://i.hizliresim.com/f0e8yod.jpg', 1),
-(12, 'Retro Şarkılar', 'Dillerden düşmeyen retro şarkıları senin için derledik. İşte Kamuran Akkor, Ajda Pekkan ve Barış Manço\'nun şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/1sycmmv.jpg', 1),
+INSERT INTO `bolum` (`id`, `baslik`, `aciklama`, `gorselurl`, `idkategori`) VALUES
+(1, 'Türkçe Pop | Hareketli Şarkılar', 'Dinlerken yerinde duramayacağın en hareketli şarkıları senin için derledik. İşte Ece Mumay, Edis ve Tarkan gibi şarkıcıların hareketli şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/eukpdhz.jpg', 1),
+(2, 'Yabancı Pop | Hareketli Şarkılar', 'Yerinde duramayanlar için yabancı popun en hareketli şarkılarını derledik. İşte Justın Tımberlake, Lady Gaga ve Shakira\'nın bomba gibi şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/bz60dkf.jpg', 1),
+(3, 'Türkçe Rock | Hareketli Şarkılar', 'Hareketli Türkçe rock şarkıları bu çalma listesinde bulabilirsin. İşte Pamela ve Gökçe gibi şarkıcıların hareketli rock şarkılarını dinleyebileceğin çalma listesi...', 'https://i.hizliresim.com/trxtk77.jpg', 1),
+(4, 'Yaz Şarkıları | Hareketli Şarkılar', 'Yaz aylarının vazgeçilmez şarkılarını senin için derledik. İşte Türkçe Pop\'un rengarenk, yaz sıcaklığındaki şarkılarını dinleyebileceğin çalma listesi...', 'https://i.hizliresim.com/9c5qbux.jpg', 1),
+(5, 'Karadeniz | Hareketli Şarkılar', 'En güzel Karadeniz şarkıları dinlemek için doğru yerdesiniz. 7/24 dinle ile Karadeniz türküleri ve şarkıları en sevilen Karadeniz sanatçıları ile sizlerle.', 'https://i.hizliresim.com/sa7vels.jpg', 1),
+(6, 'Hareketli Türk Sanat Müziği', 'Hareketli Türk Sanat Müziği şarkılarını bu çalma listesinde bulabilirsin. İşte Safiye Ayla, Emel Sayın ve Zeki Müren gibi müzisyenlerin şarkılarını dinleyebileceğin çalma listesi...', 'https://i.hizliresim.com/8rfmivx.jpg', 1),
+(7, 'Pop Nostalji', '70\'ler ve 80\'lerden özenle seçtiğimiz efsaneleşmiş pop şarkıları senin için derledik. İşte Nesrin Sipahi, Nilüfer ve Semiramis Pekkan gibi unutulmaz şarkıcıların şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/setm336.jpg', 2),
+(8, 'Anadolu Rock Nostalji', 'Cem Karaca\'dan Barış Manço\'ya kadar birçok Anadolu Rock efsanelerinin şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/pyl7i9f.jpg', 2),
+(9, 'Eski Şarkılar', 'Zamanın ötesinde bir güzelliğe sahip olan efsaneleşmiş şarkıları bu çalma listesinde bulabilirsin. İşte Uğur Akdora, Cici Kızlar ve Esmeray\'ın şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/lorwp0p.jpg', 2),
+(10, '45\'lik Nostalji', 'Her dönem sıkılmadan dinlediğimiz ölümsüz eserlerin yer aldığı şarkıları bu çalma listesinde bulabilirsin. İşte Füsun Önal, Gönül Akkor ve Semiramis Pekkan\'ın şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/qp1a8gu.jpg', 2),
+(11, 'Efsane Şarkılar', 'Yıllar geçse de eskimeyen muhteşem eserleri senin için derledik. İşte geçmişten günümüze ulaşan efsane şarkılar...', 'https://i.hizliresim.com/f0e8yod.jpg', 2),
+(12, 'Retro Şarkılar', 'Dillerden düşmeyen retro şarkıları senin için derledik. İşte Kamuran Akkor, Ajda Pekkan ve Barış Manço\'nun şarkılarının yer aldığı çalma listesi...', 'https://i.hizliresim.com/1sycmmv.jpg', 2),
 (13, 'Manga', 'Manga\'nin en popüler sarkilarini bu çalma listesinde bulabilirsin... Iste Cevapsiz Sorular, Bir Kadin Çizeceksin ve daha nice Manga sarkisinin yer aldigi çalma listemiz....', 'https://i.hizliresim.com/jvvfirw.jpg', 3),
 (14, 'Sebnem Ferah', 'Rock müzigin kraliçesi Sebnem Ferah\'in efsanelesen sarkilarini bu çalma listesinde bulabilirsin... Iste Sil Bastan, Can Kiriklari ve daha nice Sebnem Ferah sarkisinin yer aldigi çalma listemiz.... ', 'https://i.hizliresim.com/500l014.jpg', 3),
 (15, 'Zakkum', '\"Anason\" sarkisiyla tanidigimiz Zakkum grubunun sarkilarini bu çalma listesinde bulabilirsin. Iste Zakkum\'un sarkilarinin yer aldigi çalma listesi...', 'https://i.hizliresim.com/hifnmaf.jpg', 3),
 (16, 'Mor ve Ötesi', '1995\'te Istanbul\'da kurulan Türk rock müzik grubu Mor ve Ötesi, Oyunbozan, Araf gibi sarkilar çikardi. Iste Mor ve Ötesi\'nin sarkilarini dinleyebilecegin çalma listesi...', 'https://i.hizliresim.com/3g8zwd2.jpg', 3),
 (17, 'Yüksek Sadakat', 'Dilimizden düsmeyen \"Belki Üstümüzden Bir Kus Geçer\" sarkisinin sahibi Yüksek Sadakat\'in sarkilarini senin için derledik. Iste Yüksek Sadakat\'in sarkilarini dinleyebilecegin çalma listesi...', 'https://i.hizliresim.com/qb2fv4w.jpg', 3),
 (18, 'Pinhani', '\"Kavak Yelleri\" dizisine yaptigi müziklerle hafizalara kazinan Pinhani\'nin sarkilarini bu çalma listesinde bulabilirsin. Iste Pinhani\'nin çok sevilen Beni Sen Inandir, Hele Bi Gel ve Dünyadan Uzak sarkilarinin yer aldigi çalma listesi...', 'https://i.hizliresim.com/hgescul.jpg', 3),
-(30, 'Karamsar | Fantezi Müzik', 'Karamsar hissettiğinde dinleyebileceğin fantezi türündeki müzikler bu çalma listesinde... Moduna uygun müzikler sana eşlik etsin istiyorsan fantezi müziklerini buradan dinleyebilirsin...', 'https://i.hizliresim.com/6ybyjfp.jpg', 2),
-(25, 'Evde Tek Başına | Fantezi Müzik', 'Evde tek başınayken hem dinleyip hem de rahat rahat eşlik edeceğin fantezi türündeki müzikler bu çalma listesinde... Tek kaldığında müzikler sana eşlik etsin istiyorsan fantezi türündeki müzikleri buradan dinleyebilirsin...', 'https://i.hizliresim.com/tvqpgh3.jpg', 2),
-(26, 'Son Ses | Fantezi Müzik', 'Son ses dinleyebileceğin fantezi müzikler bu çalma listesinde...İçinde kopan kırgınlıkları dindirmek istediğinde buradan son ses fantezi müzikler dinleyebilirsin...', 'https://i.hizliresim.com/5plo91z.jpg', 2),
-(27, 'Melankoli | Fantezi Müzik', 'Kendini hüzünlü hissettiğinde dinleyebileceğin fantezi türündeki müzikler bu çalma listesinde...İstediğin her vakitte buradan melankolik fantezi müzikler dinleyebilirsin...', 'https://i.hizliresim.com/8mqygfq.jpg', 2),
-(28, 'Uykusuz | Fantezi Müzik', 'Uyku tutmadığında dinleyebileceğin fantezi müzikler bu çalma listesinde... Uyumak istediğinde fantezi türündeki müzikleri buradan dinleyebilirsin...', 'https://i.hizliresim.com/j57injb.jpg', 2),
-(29, 'Derinlere Git | Fantezi Müzik', 'Derin hislerini sözlere döken fantezi türündeki müzikler bu çalma listesinde... Duygularına tercüman olan fantezi türündeki müzikleri buradan dinleyebilirsin...', 'https://i.hizliresim.com/otgi9sc.jpg', 2);
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `genelbaslik`
---
-
-DROP TABLE IF EXISTS `genelbaslik`;
-CREATE TABLE IF NOT EXISTS `genelbaslik` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bolumid` int(11) NOT NULL,
-  `baslik` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `genelbaslik`
---
-
-INSERT INTO `genelbaslik` (`id`, `bolumid`, `baslik`) VALUES
-(1, 0, 'EĞLENCENE HAREKET KAT'),
-(2, 1, 'BİRAZ NOSTALJİ'),
-(3, 3, '%100 ANADOLU ROCK'),
-(5, 2, 'DUYGU DURUMUNA GÖRE MÜZİKLER');
+(30, 'Karamsar | Fantezi Müzik', 'Karamsar hissettiğinde dinleyebileceğin fantezi türündeki müzikler bu çalma listesinde... Moduna uygun müzikler sana eşlik etsin istiyorsan fantezi müziklerini buradan dinleyebilirsin...', 'https://i.hizliresim.com/6ybyjfp.jpg', 4),
+(25, 'Evde Tek Başına | Fantezi Müzik', 'Evde tek başınayken hem dinleyip hem de rahat rahat eşlik edeceğin fantezi türündeki müzikler bu çalma listesinde... Tek kaldığında müzikler sana eşlik etsin istiyorsan fantezi türündeki müzikleri buradan dinleyebilirsin...', 'https://i.hizliresim.com/tvqpgh3.jpg', 4),
+(26, 'Son Ses | Fantezi Müzik', 'Son ses dinleyebileceğin fantezi müzikler bu çalma listesinde...İçinde kopan kırgınlıkları dindirmek istediğinde buradan son ses fantezi müzikler dinleyebilirsin...', 'https://i.hizliresim.com/5plo91z.jpg', 4),
+(27, 'Melankoli | Fantezi Müzik', 'Kendini hüzünlü hissettiğinde dinleyebileceğin fantezi türündeki müzikler bu çalma listesinde...İstediğin her vakitte buradan melankolik fantezi müzikler dinleyebilirsin...', 'https://i.hizliresim.com/8mqygfq.jpg', 4),
+(28, 'Uykusuz | Fantezi Müzik', 'Uyku tutmadığında dinleyebileceğin fantezi müzikler bu çalma listesinde... Uyumak istediğinde fantezi türündeki müzikleri buradan dinleyebilirsin...', 'https://i.hizliresim.com/j57injb.jpg', 4),
+(29, 'Derinlere Git | Fantezi Müzik', 'Derin hislerini sözlere döken fantezi türündeki müzikler bu çalma listesinde... Duygularına tercüman olan fantezi türündeki müzikleri buradan dinleyebilirsin...', 'https://i.hizliresim.com/otgi9sc.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -128,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `kategoriler` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `isim` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `kategoriler`
