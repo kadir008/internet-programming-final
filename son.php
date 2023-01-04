@@ -32,6 +32,20 @@
             modal.style.display = "block";
     }
 </script>
+   
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", { 
+    slidesPerView: 5, 
+    spaceBetween: 20,
+    navigation: { 
+        nextEl: '.swiper-button-next', 
+        prevEl: '.swiper-button-prev', 
+    },
+    loop: true
+    });
+    
+</script>
 
 </body>
 </html>

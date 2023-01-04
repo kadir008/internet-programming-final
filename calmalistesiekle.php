@@ -24,7 +24,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             $row = $sorgu -> fetch(PDO::FETCH_ASSOC);
             
             if ($row > 0) {
-                $conn->prepare("UPDATE bolum SET baslik = ?, aciklama = ?, gorselurl = ?, bolumid = ? WHERE id = '$id'")->execute([$baslik, $aciklama, $gorselurl, $kategori]);
+                $conn->prepare("UPDATE bolum SET baslik = ?, aciklama = ?, gorselurl = ?, idkategori = ? WHERE id = '$id'")->execute([$baslik, $aciklama, $gorselurl, $kategori]);
                 
                 $conn->prepare("UPDATE kategoriler SET isim = ? WHERE id = '$id'")->execute([$baslik]);
                 
@@ -38,14 +38,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             $gorselurl = $_POST['gorselurl'];
             $kategori = $_POST['kategori'];
             
-			$conn->prepare("INSERT INTO bolum (baslik, aciklama, gorselurl, bolumid) VALUES (?, ?, ?, ?)")->execute([$baslik, $aciklama, $gorselurl, $kategori]);
+			$conn->prepare("INSERT INTO bolum (baslik, aciklama, gorselurl, idkategori) VALUES (?, ?, ?, ?)")->execute([$baslik, $aciklama, $gorselurl, $kategori]);
             
             $conn->prepare("INSERT INTO kategoriler (isim) VALUES (?)")->execute([$baslik]);
             
             echo "<script>alert('Çalma listeniz başarıyla eklenmiştir.');</script>";        
         }
             
-            $kategoriid = $conn->prepare("SELECT * FROM genelbaslik ORDER BY baslik ASC");
+            $kategoriid = $conn->prepare("SELECT * FROM anasayfakategori ORDER BY kategoribaslik ASC");
             $kategoriid -> execute();
             $kategoriler = $kategoriid->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -63,15 +63,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                      <?php
                         foreach($kategoriler as $kategori) {
                                 $seciliMi = "";
-                            if ($row['bolumid'] == $kategori['bolumid']) {
+                            if ($row['idkategori'] == $kategori['id']) {
                                 $seciliMi = "selected";
                             }
-                            echo '<option value="'.$kategori['bolumid'].'" '.$seciliMi.'>'.$kategori['baslik'].'</option>';
+                            echo '<option value="'.$kategori['id'].'" '.$seciliMi.'>'.$kategori['kategoribaslik'].'</option>';
                         }
                     ?>
                     </select>
                 </div>
-                    <input type="submit" value="Ekle">   
+                    <input type="submit" value="Ekle/Düzenle">   
               </div>
               </form>
             </div>     
@@ -87,7 +87,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             <select id="secilen" name="MusicId">
                 <?php
                     foreach($kategoriler as $kategori) {
-                        echo '<option value="'.$kategori['bolumid'].'" '.$seciliMi.'>'.$kategori['baslik'].'</option>';
+                        echo '<option value="'.$kategori['id'].'" '.$seciliMi.'>'.$kategori['kategoribaslik'].'</option>';
                     }
                 ?>
             </select>
@@ -105,16 +105,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
            <?php
             if(isset($_POST['submit'])){
               $i = $_POST['MusicId'];
-              $muzikler = $conn->prepare("SELECT * FROM bolum WHERE bolumid = '$i'");
+              $muzikler = $conn->prepare("SELECT * FROM bolum WHERE idkategori = '$i'");
               $muzikler->execute();
-            $hangikategori = $conn->prepare("SELECT * FROM bolum INNER JOIN genelbaslik ON bolum.bolumid = genelbaslik.bolumid WHERE bolum.bolumid = '$i'");
+            $hangikategori = $conn->prepare("SELECT * FROM bolum INNER JOIN anasayfakategori ON bolum.idkategori = anasayfakategori.id WHERE bolum.idkategori = '$i'");
             $hangikategori->execute();
             $kategori=$hangikategori->fetch(PDO::FETCH_ASSOC);
               foreach ($muzikler as $muzik)
               {
                   echo "<tr>";
                   echo "<td>". $muzik['baslik'] ."</td>";
-                  echo "<td>". $kategori['baslik'] ."</td>";
+                  echo "<td>". $kategori['kategoribaslik'] ."</td>";
                   echo "<td>". substr_replace($muzik['aciklama'], "...", 20) ."</td>";
                   echo "<td>" .$muzik['gorselurl']. "</td>";
                   echo '<td><a href="./calmalistesiekle.php?id='. $muzik['id']. '"><i class="fa-solid fa-pen-to-square ikonum"></i></a>  <a href="./calmalistesisil.php?id='. $muzik['id']. '"><i class="fa-solid fa-trash ikonum"></i></i></a></td>';
@@ -127,13 +127,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
               foreach ($muziks as $muzik)
               {
                   
-$hangikategor = $conn->prepare("SELECT * FROM bolum INNER JOIN genelbaslik ON bolum.bolumid = genelbaslik.bolumid WHERE bolum.bolumid =".$muzik['bolumid']);
+$hangikategor = $conn->prepare("SELECT * FROM bolum INNER JOIN anasayfakategori ON bolum.idkategori = anasayfakategori.id WHERE bolum.idkategori =".$muzik['idkategori']);
             $hangikategor->execute();
             $kategor=$hangikategor->fetch(PDO::FETCH_ASSOC);
                   
                   echo "<tr>";
                   echo "<td>". $muzik['baslik'] ."</td>";
-                  echo "<td>". $kategor['baslik'] ."</td>";
+                  echo "<td>". $kategor['kategoribaslik'] ."</td>";
                   echo "<td>". substr_replace($muzik['aciklama'], "...", 20) ."</td>";
                   echo "<td>" .$muzik['gorselurl']. "</td>";
                   echo '<td><a href="./calmalistesiekle.php?id='. $muzik['id']. '"><i class="fa-solid fa-pen-to-square ikonum"></i></a>  <a href="./calmalistesisil.php?id='. $muzik['id']. '"><i class="fa-solid fa-trash ikonum"></i></i></a></td>';

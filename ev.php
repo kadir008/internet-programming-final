@@ -8,22 +8,26 @@ require_once './ana.php';
             Müzikseverlerin ortak noktada buluştuğu bu online radyolarda pop, rock, arabesk, türk sanat müziği,<br>türkü gibi farklı türlerdeki şarkıları moduna göre Türkçe-yabancı slow, romantik ve enerjik müzikleri de bulabilirsin.<br>
             İstersen 70'ler, 80'ler ve 90'ların en popüler şarkıları ile coşarken, istersen nostaljik bir yolculuğa çıkabilir,<br> istersen de günümüzün en hit şarkılarını dinleyebilirsin.</p>
     </div>
-    
+ 
     <?php
-        $bolumsayisi = $conn->query("Select MAX(bolumid) FROM bolum")->fetchColumn();
-        for($i = 0; $i <= $bolumsayisi; $i++)
+        $bolumsayisi = $conn->query("Select MAX(idkategori) FROM bolum")->fetchColumn();
+        for($i = 1; $i <= $bolumsayisi; $i++)
         {
-              $isim = $conn->query("Select baslik FROM genelbaslik WHERE bolumid = '$i'")->fetchColumn();
-              $kategoris = $conn->query("SELECT * FROM bolum WHERE bolumid = '$i'")->fetchAll();     
+              $isim = $conn->query("Select kategoribaslik FROM anasayfakategori WHERE id = '$i'")->fetchColumn();
+              $kategoris = $conn->query("SELECT * FROM bolum WHERE idkategori = '$i'")->fetchAll();
+            
               echo "<div id='hareketli'><h2>". $isim ."</h2></div>";
-              echo "<div id='kutular'>";
+              echo "<div class='swiper mySwiper'>";  
+              echo "<div class='swiper-wrapper'>";
               foreach ($kategoris as $kategori)
               {
-                  echo "<div id='kutu'>";
+                  echo "<div class='swiper-slide'>";
                       echo '<a href="./calmalistesi.php?id='. $kategori['id']. '"><img src="'. $kategori['gorselurl'] .'" /></a>';
                   echo "</div>";
               }
-                  echo "</div>";   
+                  echo "</div>";
+                  echo "<div class='swiper-button-next'></div><div class='swiper-button-prev'></div><div class='swiper-pagination'></div>";
+                  echo "</div>"; 
         }
     ?>   
      
